@@ -1,0 +1,60 @@
+escalabilidad:
+  estrategia: "hibrida"  # horizontal, vertical, hibrida
+  
+  horizontal:
+    modulo_mcp:
+      min_instancias: 2
+      max_instancias: 10
+      metricas_escala:
+        - nombre: "requests_por_segundo"
+          umbral_scale_out: 50
+          umbral_scale_in: 10
+        - nombre: "latencia_p95"
+          umbral_scale_out: 1000
+          umbral_scale_in: 300
+    
+    modulo_met:
+      min_instancias: 3  
+      max_instancias: 20
+      metricas_escala:
+        - nombre: "tareas_pendientes"
+          umbral_scale_out: 100
+          umbral_scale_in: 20
+        - nombre: "uso_cpu"
+          umbral_scale_out: 80
+          umbral_scale_in: 30
+  
+  vertical:
+    recursos_por_modulo:
+      mcp:
+        cpu: "2-4"
+        memoria: "4G-8G"
+        disk: "10G"
+      met:
+        cpu: "1-8" 
+        memoria: "2G-16G"
+        disk: "20G"
+      sm3:
+        cpu: "4-8"
+        memoria: "8G-32G"
+        disk: "100G-1T"
+      mao:
+        cpu: "2-4"
+        memoria: "4G-16G"
+        disk: "50G"
+
+  optimizacion:
+    cache:
+      habilitado: true
+      tamaño_maximo: "1G"
+      politica_eviccion: "lru"
+    
+    conexiones:
+      pool_max_size: 100
+      timeout: 30
+      reconnect: true
+    
+    compresion:
+      habilitado: true
+      nivel: 6
+      umbral_minimo: 1024

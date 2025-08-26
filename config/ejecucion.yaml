@@ -1,0 +1,54 @@
+# Configuración del sistema de ejecución de tareas
+ejecucion:
+  # Configuración general
+  timeout_default: 30
+  max_reintentos: 3
+  max_tareas_concurrentes: 50
+  
+  # Estrategias de reintento
+  estrategias_reintento:
+    default:
+      max_reintentos: 3
+      delay: 2
+      backoff: exponencial
+      base: 2
+    
+    rapido:
+      max_reintentos: 5
+      delay: 1
+      backoff: lineal
+    
+    conservador:
+      max_reintentos: 7
+      delay: 5
+      backoff: exponencial
+      base: 3
+  
+  # Límites de recursos
+  limites_recursos:
+    max_memory_mb: 1024
+    max_cpu_percent: 80
+    max_tiempo_ejecucion: 300
+    max_tareas_por_proceso: 20
+  
+  # Monitorización
+  monitorizacion:
+    intervalo_monitoreo: 5
+    max_historial: 1000
+    umbral_alerta_cpu: 85
+    umbral_alerta_memoria: 80
+    umbral_alerta_latencia: 1000  # ms
+  
+  # Gestión de errores
+  gestion_errores:
+    clasificacion_automatica: true
+    escalado_automatico: true
+    umbral_escalado: 0.8  # Confianza mínima para escalar
+    timeout_escalado: 60  # segundos
+  
+  # Logging
+  logging:
+    nivel: INFO
+    registrar_ejecuciones: true
+    registrar_errores: true
+    tamano_maximo_log: 104857600  # 100MB

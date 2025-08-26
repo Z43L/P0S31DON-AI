@@ -1,0 +1,27 @@
+# Configuración de monitorización distribuida
+monitorizacion:
+  otlp:
+    enabled: true
+    endpoint: "localhost:4317"
+    insecure: true
+    timeout: 5
+  
+  metrics:
+    enabled: true
+    port: 9464
+    endpoint: "/metrics"
+  
+  logging:
+    level: "INFO"
+    format: "json"
+    output: "stdout"
+  
+  traces:
+    sampling_rate: 1.0
+    max_export_batch_size: 512
+    export_timeout_millis: 30000
+  
+  service:
+    name: "saam-system"
+    namespace: "saam"
+    version: "1.0.0"

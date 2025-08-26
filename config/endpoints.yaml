@@ -1,0 +1,104 @@
+# Especificación OpenAPI de endpoints principales
+openapi: 3.0.0
+info:
+  title: API SAAM Module Communication
+  version: 1.0.0
+
+paths:
+  /mcp/generar-plan:
+    post:
+      summary: Generar un nuevo plan de tareas
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerarPlanRequest'
+      responses:
+        '200':
+          description: Plan generado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanResponse'
+        '400':
+          description: Solicitud inválida
+        '500':
+          description: Error interno del servidor
+
+  /met/ejecutar-tarea:
+    post:
+      summary: Ejecutar una tarea específica
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EjecutarTareaRequest'
+      responses:
+        '200':
+          description: Tarea ejecutada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultadoTarea'
+        '400':
+          description: Parámetros inválidos
+        '500':
+          description: Error durante la ejecución
+
+components:
+  schemas:
+    GenerarPlanRequest:
+      type: object
+      properties:
+        objetivo:
+          type: string
+          description: Objetivo del usuario en lenguaje natural
+        contexto:
+          type: object
+          description: Contexto adicional para la planificación
+        session_id:
+          type: string
+          description: ID de sesión para mantener estado
+
+    PlanResponse:
+      type: object
+      properties:
+        plan:
+          $ref: '#/components/schemas/Plan'
+        metadatos:
+          type: object
+          properties:
+            origen:
+              type: string
+              enum: [nuevo, adaptado]
+            timestamp:
+              type: string
+              format: date-time
+
+    EjecutarTareaRequest:
+      type: object
+      required: [tarea_id, parametros]
+      properties:
+        tarea_id:
+          type: string
+        parametros:
+          type: object
+        contexto_ejecucion:
+          type: object
+
+    ResultadoTarea:
+      type: object
+      properties:
+        resultado:
+          type: object
+        metadatos:
+          type: object
+          properties:
+            exito:
+              type: boolean
+            duracion:
+              type: number
+            herramienta_utilizada:
+              type: string

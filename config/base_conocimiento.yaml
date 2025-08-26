@@ -1,0 +1,33 @@
+# Configuración de la Base de Conocimiento y Habilidades
+base_conocimiento:
+  # Configuración de almacenamiento
+  ruta_bd: "./data/conocimiento"
+  tipo_almacenamiento: "chromadb"
+  compression_habilitada: true
+  tamaño_maximo_db: 1073741824  # 1 GB
+  
+  # Configuración de búsqueda
+  umbral_similitud: 0.6
+  max_resultados_busqueda: 10
+  habilitar_busqueda_semantica: true
+  modelo_embedding: "all-MiniLM-L6-v2"
+  
+  # Configuración de métricas
+  alpha_metricas: 0.1  # Factor de suavizado para métricas
+  intervalo_actualizacion_metricas: 3600  # 1 hora
+  retencion_metricas: 365  # días
+  
+  # Configuración de versionado
+  max_historial_versiones: 10
+  politica_versionado: "semantic"  # semantic, sequential, timestamp
+  auto_versionado: true
+  
+  # Configuración de optimización
+  intervalo_optimizacion: 86400  # 24 horas
+  habilitar_indexacion_automatica: true
+  tamaño_lote_indexacion: 1000
+  
+  # Configuración de seguridad
+  validacion_entrada: true
+  max_tamaño_habilidad: 1048576  # 1 MB
+  sanitizacion_automatica: true

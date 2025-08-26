@@ -1,0 +1,25 @@
+# Configuración base para todos los entornos
+sistema:
+  nombre: "SAAM"
+  version: "1.0.0"
+  timeout_ejecucion: 300  # segundos
+
+llm:
+  proveedor: "openai"
+  modelo: "gpt-4-1106-preview"
+  temperatura: 0.1
+  max_tokens: 4000
+
+memoria:
+  trabajo:
+    timeout: 3600  # 1 hora
+  conocimiento:
+    tipo_db: "chromadb"
+    ruta: "./data/conocimiento"
+  episodica:
+    tipo_db: "sqlite"
+    ruta: "./data/episodica.db"
+
+logging:
+  level: "INFO"
+  archivo: "./logs/saam.log"

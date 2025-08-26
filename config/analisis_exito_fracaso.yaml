@@ -1,0 +1,52 @@
+# Configuración del sistema de análisis de éxito/fracaso
+analisis_exito_fracaso:
+  # Configuración general
+  intervalo_analisis: 86400  # 24 horas
+  max_episodios_analisis: 10000
+  umbral_significancia: 0.05
+  min_muestras_analisis: 100
+  
+  # Configuración de modelos ML
+  modelos_ml:
+    random_forest:
+      habilitado: true
+      n_estimators: 100
+      max_depth: 10
+    gradient_boosting:
+      habilitado: true
+      n_estimators: 100
+      learning_rate: 0.1
+    logistic_regression:
+      habilitado: false
+    svm:
+      habilitado: false
+  
+  # Configuración de preprocesamiento
+  preprocesamiento:
+    escalado: true
+    balanceo_clases: true
+    umbral_balanceo: 0.3
+    tratamiento_outliers: true
+  
+  # Configuración de características
+  características:
+    numéricas:
+      - duracion_total
+      - num_tareas
+      - tasa_exito_tareas
+      - num_herramientas_unicas
+    categóricas:
+      - estado
+      - herramientas_utilizadas
+  
+  # Configuración de recomendaciones
+  recomendaciones:
+    umbral_importancia: 0.1
+    prioridad_default: "media"
+    max_recomendaciones: 10
+  
+  # Configuración de monitorización
+  monitorización:
+    habilitado: true
+    intervalo_metricas: 3600
+    log_detallado: false

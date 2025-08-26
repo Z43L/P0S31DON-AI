@@ -1,0 +1,59 @@
+# Configuración del sistema de herramientas y APIs
+herramientas:
+  # Directorios para carga de herramientas personalizadas
+  directorios:
+    - "./herramientas/custom"
+    - "./plugins"
+  
+  # Configuración de herramientas específicas
+  busqueda_web:
+    timeout: 15
+    motores:
+      google:
+        habilitado: true
+        api_key: "${GOOGLE_API_KEY}"
+        search_engine_id: "${GOOGLE_SEARCH_ENGINE_ID}"
+        max_resultados: 10
+      bing:
+        habilitado: false
+        api_key: "${BING_API_KEY}"
+        max_resultados: 10
+  
+  generacion_texto:
+    proveedor: "openai"
+    modelo_default: "gpt-3.5-turbo"
+    temperatura_default: 0.7
+    max_tokens_default: 1000
+  
+  api_clients:
+    timeout: 30
+    max_reintentos: 3
+    timeout_entre_reintentos: 2
+    validar_ssl: true
+  
+  # Configuración de APIs externas
+  apis:
+    openai:
+      habilitado: true
+      api_key: "${OPENAI_API_KEY}"
+      modelo_default: "gpt-3.5-turbo"
+    
+    google_search:
+      habilitado: true
+      api_key: "${GOOGLE_API_KEY}"
+      search_engine_id: "${GOOGLE_SEARCH_ENGINE_ID}"
+    
+    # Otras APIs pueden agregarse aquí
+  
+  # Configuración de seguridad
+  seguridad:
+    validacion_parametros: true
+    sanitizacion_entrada: true
+    limite_tiempo_ejecucion: 300
+    limite_memoria: 512
+  
+  # Configuración de monitorización
+  monitorizacion:
+    habilitado: true
+    intervalo_metricas: 60
+    umbral_alerta_rendimiento: 0.8

@@ -1,0 +1,41 @@
+# Configuración del flujo integrado PERA
+flujo_pera:
+  # Configuración de fases
+  fases:
+    planificacion:
+      timeout: 30
+      max_replanificaciones: 3
+      umbral_similitud_planes: 0.7
+    
+    ejecucion:
+      timeout_por_tarea: 60
+      max_reintentos_por_tarea: 3
+      modo_continuacion: "detener_si_error_critico"  # continuar_siempre, detener_si_error_critico
+    
+    recoleccion:
+      retencion_memoria_trabajo: 3600  # 1 hora después de finalizar
+      compresion_episodios: true
+      tamano_maximo_episodio: 1048576  # 1MB
+    
+    aprendizaje:
+      ejecucion_asincrona: true
+      delay_ejecucion: 300  # 5 minutos después de recolección
+      max_episodios_por_lote: 100
+  
+  # Configuración de manejo de errores
+  manejo_errores:
+    reintentos_conexion: 3
+    delay_reintentos: 1000  # ms
+    modo_degracion: "parcial"  # parcial, completo, critico
+  
+  # Configuración de rendimiento
+  rendimiento:
+    max_sesiones_concurrentes: 100
+    max_tareas_por_segundo: 50
+    timeout_global: 3600  # 1 hora
+  
+  # Configuración de monitorización
+  monitorizacion:
+    log_nivel: "INFO"
+    metricas_habilitadas: true
+    intervalo_metricas: 60

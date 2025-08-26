@@ -1,0 +1,27 @@
+# Configuración de la memoria de trabajo
+memoria_trabajo:
+  # Configuración general
+  timeout_default: 3600  # 1 hora en segundos
+  timeout_sesion: 7200   # 2 horas para sesiones completas
+  intervalo_limpieza: 300  # 5 minutos entre limpiezas automáticas
+  
+  # Límites de recursos
+  max_entradas_por_sesion: 1000
+  max_tamano_por_sesion: 10485760  # 10 MB
+  max_sesiones_activas: 100
+  
+  # Configuración de optimización
+  compresion_habilitada: true
+  compresion_umbral: 1024  # Comprimir valores mayores a 1KB
+  cache_habilitado: true
+  cache_tamano: 10000  # 10,000 entradas en cache
+  
+  # Configuración de monitorización
+  metricas_habilitadas: true
+  intervalo_metricas: 60  # Reportar métricas cada 60 segundos
+  log_nivel: "INFO"
+  
+  # Configuración de seguridad
+  sanitizacion_entrada: true
+  validacion_estructura: true
+  max_profundidad_objetos: 10

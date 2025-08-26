@@ -1,0 +1,37 @@
+# Configuración del sistema de optimización de herramientas
+optimizacion_herramientas:
+  # Configuración general
+  intervalo_optimizacion: 86400  # 24 horas
+  intervalo_monitoreo: 300  # 5 minutos
+  max_episodios_analisis: 1000
+  
+  # Umbrales de optimización
+  umbral_significancia: 0.05
+  umbral_mejora: 0.1  # 10% de mejora mínima para aplicar cambio
+  min_ejecuciones: 10  # Mínimo ejecuciones para considerar herramienta
+  min_confianza: 0.7   # Confianza mínima para aplicar cambio
+  
+  # Configuración de alertas
+  alertas:
+    umbral_alerta_exito: 0.6
+    umbral_alerta_latencia: 1.5  # 50% más lento
+    nivel_alerta_degradacion: "alto"
+    nivel_alerta_latencia: "medio"
+  
+  # Pesos para selección de herramientas
+  pesos_seleccion:
+    tasa_exito: 0.6
+    velocidad: 0.4
+    confiabilidad: 0.3
+    costo: 0.2
+  
+  # Configuración de monitorización
+  monitorizacion:
+    habilitado: true
+    intervalo_metricas: 3600
+    retencion_metricas: 30  # días
+  
+  # Configuración de retrocompatibilidad
+  mantener_versiones_anteriores: true
+  max_versiones_herramienta: 3
+  rollback_automatico: true

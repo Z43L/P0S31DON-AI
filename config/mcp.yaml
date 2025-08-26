@@ -1,0 +1,25 @@
+# Configuración específica del Módulo de Comprensión y Planificación
+mcp:
+  llm:
+    modelo: "gpt-4-1106-preview"
+    temperatura: 0.1
+    max_tokens: 4000
+    timeout: 30
+  
+  max_tareas_por_plan: 20
+  max_intentos_replanificacion: 3
+  timeout_generacion_plan: 60
+  
+  cache:
+    tamaño_maximo: 1000
+    tiempo_vida: 3600
+  
+  validacion:
+    habilitado: true
+    nivel_rigor: "alto"
+    revision_automatica: true
+  
+  optimizacion:
+    habilitado: true
+    nivel_agresividad: "medio"
+    usar_historial: true

@@ -1,0 +1,40 @@
+# Configuración de la Memoria Episódica
+memoria_episodica:
+  # Configuración de almacenamiento
+  cadena_conexion: "sqlite:///./data/episodica.db"
+  tipo_almacenamiento: "sqlite"  # sqlite, postgresql, mysql
+  compression_habilitada: true
+  tamaño_maximo_db: 2147483648  # 2 GB
+  
+  # Configuración de retención
+  retencion_dias: 365  # Conservar episodios por 1 año
+  politica_archivado: "mensual"  # mensual, trimestral, anual
+  habilitar_purgado_automatico: true
+  intervalo_purgado: 86400  # 24 horas
+  
+  # Configuración de indexación
+  habilitar_indexacion_automatica: true
+  intervalo_indexacion: 3600  # 1 hora
+  tamaño_lote_indexacion: 1000
+  indices_habilitados:
+    - por_estado
+    - por_objetivo
+    - por_session
+    - por_fecha
+    - por_rendimiento
+  
+  # Configuración de integridad
+  validacion_integridad: true
+  checksum_habilitado: true
+  verificacion_consistencia: true
+  
+  # Configuración de rendimiento
+  max_conexiones: 10
+  timeout_consulta: 30  # segundos
+  cache_habilitado: true
+  tamaño_cache: 1000  # episodios en cache
+  
+  # Configuración de backup
+  backup_automatico: true
+  intervalo_backup: 86400  # 24 horas
+  retencion_backups: 7  # días

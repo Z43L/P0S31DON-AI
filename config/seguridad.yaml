@@ -1,0 +1,31 @@
+# Configuración de seguridad para comunicaciones entre módulos
+seguridad:
+  jwt:
+    secret_key: "cambiar_por_una_clave_segura_en_produccion"
+    algorithm: "HS256"
+    token_expire_hours: 24
+  
+  modulos:
+    mcp:
+      permisos: ["planificar", "consultar"]
+      token: "token_mcp"
+    met:
+      permisos: ["ejecutar", "monitorear"]
+      token: "token_met"
+    sm3:
+      permisos: ["leer", "escribir", "administrar"]
+      token: "token_sm3"
+    mao:
+      permisos: ["analizar", "optimizar", "administrar"]
+      token: "token_mao"
+  
+  ssl:
+    habilitado: false
+    cert_file: "/path/to/cert.pem"
+    key_file: "/path/to/key.pem"
+    ca_certs: "/path/to/ca.pem"
+  
+  rate_limiting:
+    habilitado: true
+    requests_per_minute: 100
+    burst_capacity: 20

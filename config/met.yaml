@@ -1,0 +1,28 @@
+# Configuración del Módulo de Ejecución de Tareas
+met:
+  max_workers: 20
+  max_process_workers: 8
+  timeout_default: 30
+  max_reintentos: 3
+  max_tareas_concurrentes: 50
+  
+  recursos:
+    max_memory_mb: 1024
+    max_cpu_percent: 80
+    max_disk_usage: 90
+  
+  monitorizacion:
+    intervalo_captura: 5
+    max_historial: 1000
+    alerta_umbral_cpu: 85
+    alerta_umbral_memoria: 90
+  
+  herramientas:
+    timeout_busqueda: 10
+    timeout_generacion: 30
+    timeout_api: 15
+  
+  logging:
+    nivel: "INFO"
+    formato: "json"
+    archivo: "/logs/met.log"

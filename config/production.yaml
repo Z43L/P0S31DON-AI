@@ -1,0 +1,70 @@
+# Configuración de producción para SAAM
+entorno: "production"
+
+# Configuración de módulos
+modulos:
+  mcp:
+    enabled: true
+    host: "0.0.0.0"
+    port: 8000
+    workers: 4
+    timeout: 30
+    
+  met:
+    enabled: true  
+    host: "0.0.0.0"
+    port: 8001
+    max_workers: 20
+    timeout_default: 30
+    
+  sm3:
+    enabled: true
+    persistencia:
+      trabajo: "redis://cache:6379/0"
+      conocimiento: "chromadb://data/conocimiento"
+      episodica: "postgresql://user:pass@db:5432/episodica"
+    
+  mao:
+    enabled: true
+    intervalo_analisis: 3600
+    intervalo_monitoreo: 86400
+
+# Configuración de comunicación
+comunicacion:
+  protocolo: "rest"  # rest o rabbitmq
+  rabbitmq:
+    host: "rabbitmq"
+    port: 5672
+    username: "saam"
+    password: "${RABBITMQ_PASSWORD}"
+    vhost: "/saam"
+  
+  rest:
+    timeout: 30
+    max_retries: 3
+
+# Configuración de seguridad
+seguridad:
+  ssl:
+    enabled: true
+    cert_file: "/ssl/cert.pem"
+    key_file: "/ssl/key.pem"
+  
+  authentication:
+    enabled: true
+    jwt_secret: "${JWT_SECRET}"
+    token_expire_hours: 24
+  
+  cors:
+    enabled: true
+    allowed_origins: ["https://dominio.com"]
+
+# Configuración de monitorización
+monitorizacion:
+  enabled: true
+  prometheus:
+    enabled: true
+    port: 9090
+  health_check:
+    interval: 30
+    timeout: 5

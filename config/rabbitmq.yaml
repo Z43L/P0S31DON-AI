@@ -1,0 +1,41 @@
+# Configuración de RabbitMQ para SAAM
+rabbitmq:
+  host: "localhost"
+  port: 5672
+  username: "saam"
+  password: "saam_password"
+  virtualhost: "/saam"
+  
+  exchanges:
+    - nombre: "saam.eventos"
+      tipo: "topic"
+      descripcion: "Exchange para eventos del sistema"
+    - nombre: "saam.tareas"
+      tipo: "direct"
+      descripcion: "Exchange para gestión de tareas"
+    - nombre: "saam.aprendizaje"
+      tipo: "fanout"
+      descripcion: "Exchange para eventos de aprendizaje"
+  
+  colas:
+    - nombre: "mcp.solicitudes_planificacion"
+      exchange: "saam.tareas"
+      routing_key: "planificacion.*"
+      durable: true
+    - nombre: "met.tareas_pendientes"
+      exchange: "saam.tareas"
+      routing_key: "tarea.ejecutar"
+      durable: true
+    - nombre: "sm3.eventos_episodicos"
+      exchange: "saam.eventos"
+      routing_key: "episodio.*"
+      durable: true
+    - nombre: "mao.analisis_aprendizaje"
+      exchange: "saam.aprendizaje"
+      routing_key: "#"
+      durable: true
+  
+  reintentos:
+    max_intentos: 3
+    delay_inicial: 1000  # ms
+    factor_backoff: 2

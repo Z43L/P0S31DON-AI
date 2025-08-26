@@ -1,0 +1,45 @@
+# Configuración del sistema de generalización y creación de habilidades
+generalizacion:
+  # Configuración de generalización
+  umbral_similitud: 0.7
+  min_episodios_grupo: 3
+  max_episodios_grupo: 100
+  intervalo_generalizacion: 86400  # 24 horas
+  
+  # Configuración de clustering
+  clustering:
+    algoritmo: "dbscan"
+    dbscan_eps: 0.5
+    dbscan_min_samples: 2
+    optics_min_samples: 2
+  
+  # Configuración de calidad
+  calidad:
+    umbral_calidad: 0.6
+    umbral_cobertura: 0.6
+    pesos_calidad:
+      cobertura: 0.3
+      consistencia: 0.25
+      generalidad: 0.2
+      utilidad_predictiva: 0.15
+      precision: 0.1
+  
+  # Configuración de integración
+  integracion:
+    reemplazo_automatico: true
+    umbral_reemplazo: 0.8
+    mantener_version_antigua: true
+    max_versiones: 5
+  
+  # Configuración de habilidades
+  habilidades:
+    longitud_minima_nombre: 3
+    max_parametros: 10
+    max_tareas_procedimiento: 20
+    timeout_maximo: 3600  # 1 hora
+  
+  # Configuración de monitorización
+  monitorizacion:
+    habilitado: true
+    log_detallado: false
+    intervalo_reportes: 3600

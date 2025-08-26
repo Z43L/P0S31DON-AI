@@ -1,0 +1,57 @@
+monitorizacion:
+  metricas_nivel_sistema:
+    - nombre: "uso_cpu"
+      descripcion: "Porcentaje de uso de CPU"
+      umbral_critico: 90
+      umbral_advertencia: 75
+      intervalo: 60
+    
+    - nombre: "uso_memoria" 
+      descripcion: "Porcentaje de uso de memoria"
+      umbral_critico: 85
+      umbral_advertencia: 70
+      intervalo: 60
+    
+    - nombre: "disponibilidad_api"
+      descripcion: "Disponibilidad de endpoints críticos"
+      umbral_critico: 95
+      umbral_advertencia: 98
+      intervalo: 30
+
+  metricas_nivel_aplicacion:
+    - nombre: "tiempo_respuesta_promedio"
+      descripcion: "Tiempo de respuesta promedio en ms"
+      umbral_critico: 1000
+      umbral_advertencia: 500
+      intervalo: 60
+    
+    - nombre: "tasa_error"
+      descripcion: "Porcentaje de solicitudes con error"
+      umbral_critico: 5
+      umbral_advertencia: 2
+      intervalo: 300
+    
+    - nombre: "tasa_aprendizaje_exitoso"
+      descripcion: "Porcentaje de ciclos de aprendizaje exitosos"
+      umbral_critico: 60
+      umbral_advertencia: 75
+      intervalo: 86400
+
+  alertas:
+    - nombre: "alto_uso_recursos"
+      descripcion: "Uso de recursos del sistema críticamente alto"
+      condiciones: "uso_cpu > 90 OR uso_memoria > 85"
+      severidad: "critica"
+      canales: ["email", "slack", "pagerduty"]
+    
+    - nombre: "degradacion_rendimiento"
+      descripcion: "Degradación significativa del rendimiento"
+      condiciones: "tiempo_respuesta_promedio > 1000 AND tasa_error > 5"
+      severidad: "alta" 
+      canales: ["slack", "email"]
+    
+    - nombre: "aprendizaje_inefectivo"
+      descripcion: "Baja efectividad en ciclos de aprendizaje"
+      condiciones: "tasa_aprendizaje_exitoso < 60"
+      severidad: "media"
+      canales: ["slack"]

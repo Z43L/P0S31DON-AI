@@ -1,0 +1,42 @@
+# Configuración del sistema de generación de metadatos
+metadatos:
+  # Configuración general
+  version_esquema: "1.0"
+  habilitado: true
+  nivel_detalle: "completo"  # [minimo, basico, completo, debug]
+  
+  # Configuración de almacenamiento
+  almacenamiento:
+    buffer_tamano: 100
+    buffer_timeout: 60  # segundos
+    almacenamiento_inmediato: false
+    compresion: true
+    retencion_dias: 30
+  
+  # Configuración de métricas
+  metricas:
+    habilitar_avanzadas: true
+    intervalo_muestreo: 1  # segundo
+    capturar_metricas_sistema: true
+    umbral_alerta_rendimiento: 0.8
+  
+  # Configuración de diagnóstico
+  diagnostico:
+    habilitado: true
+    nivel_detalle: "medio"
+    incluir_stacktrace: false
+    incluir_contexto_completo: true
+  
+  # Integración con memoria
+  integracion_memoria:
+    almacenar_episodica: true
+    extraer_conocimiento: true
+    mantener_trabajo: true
+    tiempo_retencion_trabajo: 3600  # segundos
+  
+  # Logging
+  logging:
+    nivel: "INFO"
+    registrar_ejecuciones: true
+    registrar_errores: true
+    tamano_maximo_log: 104857600  # 100MB

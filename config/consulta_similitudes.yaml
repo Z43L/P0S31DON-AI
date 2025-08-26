@@ -1,0 +1,30 @@
+# Configuración del sistema de consulta de similitudes
+consulta_similitudes:
+  umbral_similitud: 0.65
+  umbral_estructural: 0.5
+  max_resultados: 10
+  
+  pesos:
+    semantico: 0.6
+    estructural: 0.4
+    rendimiento: 1.0
+    temporalidad: 1.0
+    complejidad: 1.0
+  
+  embedding:
+    modelo: "text-embedding-ada-002"
+    dimensiones: 1536
+    timeout: 10
+  
+  reranking:
+    habilitado: true
+    factores:
+      - rendimiento_historico
+      - temporalidad
+      - complejidad
+      - relevancia_contextual
+  
+  logging:
+    nivel: "DEBUG"
+    registrar_consultas: true
+    registrar_resultados: false
